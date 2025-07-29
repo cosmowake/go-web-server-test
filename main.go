@@ -8,12 +8,17 @@ import (
 	"os"
 
 	_ "embed"
+
+	"github.com/google/uuid"
 )
 
 //go:embed page.html
 var page string
 
 func main() {
+	id := uuid.New()
+	log.Println("uuid:" + id.String())
+
 	http.HandleFunc("/", serveHello)
 
 	port := os.Getenv("PORT")
